@@ -16,4 +16,4 @@ def search(request):
         'jobs': jobs,
         'job_count': job_count,
     }
-    return render(request, context)
+    return render(request, 'home.html', context)
