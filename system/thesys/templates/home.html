@@ -1,7 +1,9 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% block content %}
 
-{% block content %}
+<a href="">Add Job</a>
+
+
+
 <section class="section-pagetop bg">
     <div class="container">
         {% if 'search' in request.path %}
@@ -22,5 +24,9 @@
     <div>
         <h2>No result found. Please try again.</h2>
     </div>
+
     {% endif %}
+
+
+
     {% endblock %}
