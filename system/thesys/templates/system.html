@@ -1,24 +1,40 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Filter Jobs</h1>
+<a href="{% url 'job-filter'%}">Filter By Job</a>
+
+
+<h1>Filter Jobs</h1>
 <hr>
 <div class="mx-auto" style="width: 600px;">
-    filter jobs
     <form method="GET">
         <table class="table table-hover">
             {{ filter.form.as_table }}
         </table>
-
         <button class=" btn btn-primary" type="submit">Filter by Job</button>
     </form>
 </div>
+<hr>
+<h1> All Jobs</h1>
+<hr>
+<h1>Select Jobs to Generate Memo</h1>
+
+
+
+
+<!-- <form method="POST">
+    {% csrf_token %}
+
+
+</form> -->
+
+
+
 <div>
     <div class="col-sm-8 input">
-        select all to create memo
         <form method="post" enctype='multipart/form-data'>
             {% csrf_token %}
             {{ form }}
-            <button class=" btn btn-primary" type="submit" href='add_memo.html' type="submit"
-                value="Choose">Select</button>
+            <input class="btn btn-submit pull-right" href='add_memo.html' type="submit" value="Choose" />
         </form>
     </div>
 </div>
@@ -53,16 +69,9 @@
 
 
             <td>
-                <!-- TODO: write for loop that only grabs selected items -->
-                {% if job %}
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" checked="checked" value="{{job.pk}}" name="boxes">
-                </div>
-                {% else %}
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="{{job.pk}}" name="boxes">
-                </div>
-                {% endif %}
+
+                <a href="#" class="btn btn">Add to 'cart'</a>
+
             </td>
             <td>{{ job.order_num }}</td>
             <td>{{ job.SKU }}</td>
@@ -87,126 +96,6 @@
 
 
 <hr />
-
-
-<!-- ========================= SECTION PAGETOP ========================= -->
-<section class="section-pagetop bg">
-    <div class="container">
-        {% if 'search' in request.path %}
-        <h2 class="title-page">Search Result</h2>
-        {% else %}
-        <h2 class="title-page">Our Store</h2>
-        {% endif %}
-
-    </div> <!-- container //  -->
-</section>
-<!-- ========================= SECTION INTRO END// ========================= -->
-
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
-    <div class="container">
-
-        <div class="row">
-            <aside class="col-md-3">
-
-                <div class="card">
-                    <article class="filter-group">
-                        <header class="card-header">
-                            <a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
-                                <i class="icon-control fa fa-chevron-down"></i>
-                                <h6 class="title">Categories</h6>
-                            </a>
-                        </header>
-                        <div class="filter-content collapse show" id="collapse_1" style="">
-                            <div class="card-body">
-
-                                <ul class="list-menu">
-                                    <li><a href="">All Products </a></li>
-                                    {% for category in links %}
-                                    {% endfor %}
-                                </ul>
-
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </article> <!-- filter-group  .// -->
-
-                </div> <!-- card.// -->
-
-            </aside> <!-- col.// -->
-            <main class="col-md-9">
-
-                <header class="border-bottom mb-4 pb-3">
-                    <div class="form-inline">
-                        <span class="mr-md-auto"><b>{{ product_count }}</b> items found </span>
-
-                    </div>
-                </header><!-- sect-heading -->
-
-                <div class="row">
-                    {% if products %}
-                    {% for product in products %}
-                    <div class="col-md-4">
-                        <figure class="card card-product-grid">
-                            <div class="img-wrap">
-
-                                <a href="{{ product.get_url }}"><img src="{{ product.images.url }}"></a>
-
-                            </div> <!-- img-wrap.// -->
-                            <figcaption class="info-wrap">
-                                <div class="fix-height">
-                                    <a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-                                    <div class="price-wrap mt-2">
-                                        <span class="price">$ {{ product.price }}</span>
-                                    </div> <!-- price-wrap.// -->
-                                </div>
-                                <a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details </a>
-                            </figcaption>
-                        </figure>
-                    </div> <!-- col.// -->
-                    {% endfor %}
-                    {% else %}
-                    <div>
-                        <h2>No result found. Please try again.</h2>
-                    </div>
-                    {% endif %}
-                </div> <!-- row end.// -->
-
-
-                <nav class="mt-4" aria-label="Page navigation sample">
-                    {% if products.has_other_pages %}
-                    <ul class="pagination">
-                        {% if products.has_previous %}
-                        <li class="page-item"><a class="page-link"
-                                href="?page={{products.previous_page_number}}">Previous</a></li>
-                        {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        {% endif %}
-
-                        {% for i in products.paginator.page_range %}
-                        {% if products.number == i %}
-                        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
-                        {% else %}
-                        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
-                        {% endif %}
-                        {% endfor %}
-
-                        {% if products.has_next %}
-                        <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">Next</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                        {% endif %}
-                    </ul>
-                    {% endif %}
-                </nav>
-
-            </main> <!-- col.// -->
-
-        </div>
-
-    </div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
 
 
 {% endblock %}

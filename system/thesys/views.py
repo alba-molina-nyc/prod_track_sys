@@ -6,7 +6,11 @@ from .forms import JobSelectForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 def thesys(request):
-    return render(request, 'system.html' )
+    jobs = Job.objects.all().filter()
+    context = {
+        'jobs': jobs,
+    }
+    return render(request, 'system.html', context )
 
 class HomeView(ListView):
     model = Job
@@ -29,7 +33,8 @@ class AddJobView(PermissionRequiredMixin, CreateView):
 class FilterByJobView(ListView):
     model = Job
     filter = JobFilter
-    template_name = 'jfilter.html'
+    template_name = 'system.html'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = JobFilter(self.request.GET, queryset=self.get_queryset())
@@ -42,7 +47,7 @@ class FilterByJobView(ListView):
         if form.is_valid():
             form.save()
         else:
-            return render(request, 'jfilter.html')
+            return render(request, 'system.html')
         print(form)
         return render(request, {'form' : form})
 
