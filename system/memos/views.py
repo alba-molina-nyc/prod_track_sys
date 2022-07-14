@@ -1,12 +1,13 @@
 #memos aka carts
+from django.views.generic import ListView, DetailView, CreateView
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Job, MemoItem, Memo
 from django.core.exceptions import ObjectDoesNotExist
-
+from .filters import MemoFilter
+from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-
 
 # create private function from this request we are going to take the memo.id
 def _memo_id(request):
@@ -64,4 +65,6 @@ def memo(request, quantity=0, memo_items=None):
         'quantity': quantity,
         'memo_items': memo_items,
     }
-    return render(request, 'memo.html', context)
+    return render(request, 'memos/memo.html', context)
+
+    # http://localhost:8000/memo/ -  render(request, 'memos/memo.html', context)

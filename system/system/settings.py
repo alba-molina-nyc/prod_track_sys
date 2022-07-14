@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'thesys',
-    'users',
     'memos',
+    'users',
     'memo_orders',
 ]
 
