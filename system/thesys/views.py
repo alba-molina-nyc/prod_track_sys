@@ -16,4 +16,4 @@ def search(request):
         'jobs': jobs,
         'job_count': job_count,
     }
-    return render(request, 'thesys/thesys.html', context)
+    return render(request, context)
