@@ -6,7 +6,7 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.thesys, name='thesys'),
+    # path('', views.thesys, name='thesys'),
     path('search/', views.search, name='search'),
   
 ]
