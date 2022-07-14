@@ -13,8 +13,6 @@ class HomeView(ListView):
     filter = JobFilter
     template_name = 'home.html'
 
-   
-
 class JobDetailView(DetailView):
     model = Job
     template_name = 'job_details.html'
