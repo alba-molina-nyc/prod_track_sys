@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 #product
 class Job(models.Model):
     order_num = models.CharField(max_length=275)
+    slug = models.SlugField(max_length=200, unique=True, default=None)
     SKU = models.CharField(max_length=275)
     description_text = models.TextField()
     num_items = models.IntegerField()

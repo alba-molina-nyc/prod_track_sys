@@ -50,7 +50,7 @@
 
             <td>
 
-                <a href="#" class="btn btn-primary">Add to 'cart'</a>
+                <a href="{% url 'add_memo' single_job.id %}" class="btn btn-primary">Add to 'cart'</a>
 
             </td>
             <td>{{ job.order_num }}</td>

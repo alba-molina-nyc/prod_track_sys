@@ -88,13 +88,14 @@ WSGI_APPLICATION = 'system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'system',
+        'NAME': 'db',
+   
     }
 }
 
 
 # ➜  prod_track_sys createdb system
-
+    #  'NAME': 'system',
 
 
 # Password validation

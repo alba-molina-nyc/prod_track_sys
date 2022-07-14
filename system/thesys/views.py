@@ -4,6 +4,23 @@ from .models import Job
 from .filters import JobFilter
 from .forms import JobSelectForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from memos.models import Memo, MemoItem
+
+def job_detail(request, job_slug):
+    try:
+        single_job = Job.objects.get(slug=job_slug)
+        in_memo = MemoItem.objects.filter(memo__memo_id=_memo_id(request), job=single_job).exists()
+    except Exception as e:
+        raise e
+
+
+
+    context = {
+        'single_job': single_job,
+        'in_memo'       : in_memo,
+
+    }
+    return render(request, 'job_detail.html', context)
 
 def thesys(request):
     jobs = Job.objects.all().filter()
