@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import MemoItem,Memo
 
-# Register your models here.
+admin.site.register(Memo)
+admin.site.register(MemoItem)
