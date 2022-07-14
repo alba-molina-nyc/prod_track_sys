@@ -5,12 +5,42 @@
 {% block content %}
 
 
+------
+
+
+
+<hr />
+<h1>Filter Memos</h1>
+
+<div class="mx-auto" style="width: 600px;">
+    <form method="GET">
+        <table class="table table-hover">
+            {{ filter.form.as_table }}
+        </table>
+        <button class=" btn btn-primary" type="submit">Filter by Memo</button>
+    </form>
+</div>
+
+<ul>
+    {% for memo in filter.qs %}
+
+    {{ memo.name }}
+    <td>{{ job.SKU }}</td>
+</ul>
+
+{% endfor %}
+
+
+
+
+
+
+--------
+
 <section class="section-content padding-y bg">
     <div class="container">
-
-        <!-- ============================ COMPONENT 1 ================================= -->
         {% if not memo_items %}
-        <h2 class="text-center">Your memo is Empty</h2>
+        <h2 class="text-center">There are no Jobs in this Memo...</h2>
         <br>
         <div class="text-center">
             <a href="" class="btn btn-primary">System</a>
@@ -22,10 +52,10 @@
                     <table class="table table-borderless table-shopping-memo">
                         <thead class="text-muted">
                             <tr class="small text-uppercase">
-                                <th scope="col">job</th>
-                                <th scope="col" width="120">Quantity</th>
-                                <th scope="col" width="120">Price</th>
-                                <th scope="col" class="text-right" width="200"> </th>
+                                <th scope="col">Memo Item</th>
+                                <th scope="col" width="120"></th>
+                                <th scope="col" width="120">Job</th>
+                                <th scope="col" class="text-right" width="200">Quantity </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,11 +64,14 @@
                             <tr>
                                 <td>
                                     <figure class="itemside align-items-center">
-                                        <div class="aside"><img src="{{ memo_item.job.images.url }}" class="img-sm">
-                                        </div>
+
                                         <figcaption class="info">
                                             <a href="{{ memo_item.job.get_url }}"
-                                                class="title text-dark">{{ memo_item.job.job_name }}</a>
+                                                class="title text-dark">{{ memo_item.job.num_items }}</a>
+                                            <p>{{ memo_item.job.num_stones }}</p>
+                                            <p>{{ memo_item.job.creator_name }}</p>
+                                            <p>{{ memo_item.job.created }}</p>
+                                            <p>{{ memo_item.job.SKU }}</p>
                                             <p class="text-muted small">
                                                 {% if memo_item.variations.all %}
                                                 {% for item in memo_item.variations.all %}
@@ -125,7 +158,7 @@
 
     </div>
 </section>
-
+<!--  -->
 
 {% endblock %}
 <!-- <h1>memo.html aka system page</h1> -->

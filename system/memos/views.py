@@ -67,4 +67,24 @@ def memo(request, quantity=0, memo_items=None):
     }
     return render(request, 'memos/memo.html', context)
 
+
+# class FilterByMemoView(ListView):
+#     model = Memo
+#     filter = MemoFilter
+#     template_name = 'memos/memo.html'
+#     fields = '__all__'
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['filter'] = MemoFilter(self.request.GET, queryset=self.get_queryset())
+#         return context
+
+
+
+
+
+
+
+
+
     # http://localhost:8000/memo/ -  render(request, 'memos/memo.html', context)
