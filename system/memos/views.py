@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 from django.http import HttpResponse
 
+
 # create private function from this request we are going to take the memo.id
 def _memo_id(request):
     # session_key -> session_id,

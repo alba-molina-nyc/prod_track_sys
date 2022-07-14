@@ -5,7 +5,8 @@ from .filters import JobFilter
 from .forms import JobSelectForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
-
+def thesys(request):
+    return render(request, 'system.html' )
 
 class HomeView(ListView):
     model = Job
