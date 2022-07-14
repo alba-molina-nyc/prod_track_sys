@@ -1,3 +1,4 @@
+# system aka greatkart-course folder
 """
 Django settings for system project.
 
@@ -83,9 +84,13 @@ WSGI_APPLICATION = 'system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cach',
+        'NAME': 'system',
     }
 }
+
+
+# ➜  prod_track_sys createdb system
+
 
 
 # Password validation
