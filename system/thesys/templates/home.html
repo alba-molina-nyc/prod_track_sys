@@ -1,32 +1,4 @@
 {% extends 'base.html' %} {% block content %}
+<h1>home</h1>
 
-<a href="">Add Job</a>
-
-
-
-<section class="section-pagetop bg">
-    <div class="container">
-        {% if 'search' in request.path %}
-        <h2 class="title-page">Search Result</h2>
-        {% else %}
-        <h2 class="title-page">Our Store</h2>
-        {% endif %}
-
-    </div>
-
-    {% if jobs %}
-    {% for job in jobs %}
-    <a href="{{ job.order_num }}"> {{ job.order_num }}</a>
-
-    {% endfor %}
-
-    {% else %}
-    <div>
-        <h2>No result found. Please try again.</h2>
-    </div>
-
-    {% endif %}
-
-
-
-    {% endblock %}
+{% endblock %}

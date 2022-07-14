@@ -1,19 +1,49 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView
 from .models import Job
-from memos.models import MemoItem
-from django.db.models import Q
-from memos.views import _memo_id
-from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from django.http import HttpResponse
+from .filters import JobFilter
+from .forms import JobSelectForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
-def search(request):
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-        if keyword:
-            jobs = Job.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(job_name__icontains=keyword))
-            job_count = jobs.count()
-    context = {
-        'jobs': jobs,
-        'job_count': job_count,
-    }
-    return render(request, 'home.html', context)
+
+
+class HomeView(ListView):
+    model = Job
+    filter = JobFilter
+    template_name = 'home.html'
+
+   
+
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'job_details.html'
+    fields = '__all__'
+
+
+class AddJobView(PermissionRequiredMixin, CreateView):
+    permission_required = 'jobs.add_jobs'
+    model = Job
+    template_name = 'add_job.html'
+    fields = '__all__'
+
+
+class FilterByJobView(ListView):
+    model = Job
+    filter = JobFilter
+    template_name = 'jfilter.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = JobFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+    def SelectJob(self, request):
+        job_list = JobFilter(self.request.GET, queryset=self.get_queryset())
+
+        if request.method == 'POST':
+            form = JobSelectForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            return render(request, 'jfilter.html')
+        print(form)
+        return render(request, {'form' : form})
+
