@@ -65,6 +65,7 @@ def memo(request, quantity=0, memo_items=None):
         'quantity': quantity,
         'memo_items': memo_items,
     }
+    return HttpResponse(memo_item.job)
     return render(request, 'memos/memo.html', context)
 
 

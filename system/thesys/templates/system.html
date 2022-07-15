@@ -48,11 +48,21 @@
             <th scope="row"> <a href="{% url 'job-detail' job.pk %}" class="btn btn-primary"> See Details</a> </th>
 
 
+
+
+
+
+
             <td>
 
-                <a href="{% url 'add_memo' single_job.id %}" class="btn btn-primary">Add to 'cart'</a>
+                <a href="{% url 'add_memo' job.id %}" class="btn btn-primary">Add to 'memo'</a>
 
             </td>
+
+
+
+
+
             <td>{{ job.order_num }}</td>
             <td>{{ job.SKU }}</td>
             <td>{{ job.num_items }}</td>
