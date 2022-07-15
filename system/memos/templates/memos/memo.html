@@ -11,13 +11,15 @@
     Stone: {{ memo_item.job.num_stones }}
     Cost for the setter: {{memo_item.quantity}}
 </p>
+
+
 {% endfor %}
 
 
 
 
-
-
+<a href="" class="btn btn-primary btn-block"> Finalize Memo </a>
+<a href="" class="btn btn-light btn-block">Find More Jobs</a>
 
 
 
@@ -47,5 +49,6 @@
     {{ memo.name }}
     <td>{{ job.SKU }}</td>
 </ul>
-
+<a href="{% url 'checkout' %}" class="btn btn-primary btn-block"> Checkout </a> -->
+<!-- <a href="{% url 'system' %}" class="btn btn-light btn-block">Continue Shopping</a> -->
 {% endfor %} -->
