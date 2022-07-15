@@ -70,3 +70,14 @@ class FilterByJobView(ListView):
         print(form)
         return render(request, {'form' : form})
 
+class JobDetailView(DetailView):
+    model = Job
+    template_name = 'job_detail.html'
+    fields = '__all__'
+
+
+class AddMemoView(PermissionRequiredMixin, CreateView):
+    permission_required = 'jobs.add_jobs'
+    model = Memo
+    template_name = 'add_memo.html'
+    fields = '__all__'

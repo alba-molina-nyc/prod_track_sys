@@ -59,6 +59,7 @@ def memo(request, total= 0, quantity=0, memo_items=None):
         for memo_item in memo_items:
             total += memo_item.job.num_stones * 0.50
             quantity += memo_item.quantity
+
     except ObjectDoesNotExist: # but if the memo_item does not exst pass
         pass
 

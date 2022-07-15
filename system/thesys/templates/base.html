@@ -28,7 +28,11 @@
             <li class="nav-item ">
                 <a class="nav-link text-white" href="{% url 'job-filter'%}">See All Memos</a>
             </li>
-
+            <li class="nav-item ">
+                {% for job in filter.qs %}
+                <a href="{% url 'job-detail' job.pk %}"> See Details</a>
+                {% endfor %}
+            </li>
 
 
             <li class="nav-item ">

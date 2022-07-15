@@ -7,8 +7,8 @@ from .views import *
 
 urlpatterns = [
     path('', FilterByJobView.as_view(), name='job-filter'),
-    path('job/<int:pk>/', JobDetailView.as_view(), name='job-detail'),
     path('add_job/', AddJobView.as_view(), name='add-job'),
+    path('job/<int:pk>/', JobDetailView.as_view(), name='job-detail'),
   
    
   

@@ -5,7 +5,12 @@
 {% block content %}
 
 {% for memo_item in memo_items %}
-{{ memo_item }}
+<p>
+    memo_item: {{ memo_item }}
+    user: {{ memo_item.user }}
+    Stone: {{ memo_item.job.num_stones }}
+    Cost for the setter: {{memo_item.quantity}}
+</p>
 {% endfor %}
 
 
