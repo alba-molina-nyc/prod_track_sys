@@ -17,7 +17,7 @@ class MemoOrder(models.Model):
     note = models.CharField(max_length=100, blank=True)
     order_total = models.FloatField()
     is_memoed = models.BooleanField(default=False) #only has been assigned when setter receives it
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    status = models.CharField(max_length=10, choices=STATUS, default='Completed')
     created_at = models.DateTimeField(auto_now_add=True)
     creator_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
