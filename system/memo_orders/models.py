@@ -21,6 +21,11 @@ class MemoOrder(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     creator_name = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
 
+class MemoOrderJob(models.Model):
+    memo_order = models.ForeignKey(MemoOrder, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+
 
 
     

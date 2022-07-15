@@ -75,12 +75,15 @@ def checkout(request,total= 0, quantity=0, memo_items=None):
     try: 
         memo = Memo.objects.get(memo_id=_memo_id(request))
         memo_items = MemoItem.objects.filter(memo=memo, is_active=True)
+        print(memo, 'try clause')
 
         for memo_item in memo_items:
             total += memo_item.job.num_stones * 0.50
             quantity += memo_item.quantity
+            print(total, 'try memo')
 
     except ObjectDoesNotExist: # but if the memo_item does not exst pass
+        print(memo, 'except')
         pass
 
     context = {
@@ -88,6 +91,7 @@ def checkout(request,total= 0, quantity=0, memo_items=None):
         'quantity': quantity,
         'memo_items': memo_items,
     }
+    # return render(request, 'memos/checkout.html' ,context)
     return render(request, 'memos/checkout.html' ,context)
 
 
