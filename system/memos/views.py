@@ -71,8 +71,24 @@ def memo(request, total= 0, quantity=0, memo_items=None):
     return render(request, 'memos/memo.html', context)
 
 
-def checkout(request):
-    return render(request,'memos/checkout.html' )
+def checkout(request,total= 0, quantity=0, memo_items=None): 
+    try: 
+        memo = Memo.objects.get(memo_id=_memo_id(request))
+        memo_items = MemoItem.objects.filter(memo=memo, is_active=True)
+
+        for memo_item in memo_items:
+            total += memo_item.job.num_stones * 0.50
+            quantity += memo_item.quantity
+
+    except ObjectDoesNotExist: # but if the memo_item does not exst pass
+        pass
+
+    context = {
+        'total': total,
+        'quantity': quantity,
+        'memo_items': memo_items,
+    }
+    return render(request, 'memos/checkout.html' ,context)
 
 
 
